@@ -8,4 +8,5 @@ Authors : Pranav Gupta
 Milestone 1 :
 - Source code for the basics and foundation of the game
 - UML diagrams
-- Documentation 
+- Documentation
+- 
