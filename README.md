@@ -6,7 +6,7 @@ Title : Scarbble
           Morgan Huang
           Nitish Grover 
 - Milestone 1 :
- 1- Source code for the basics and foundation of the game
- 2- UML diagrams
- 3- Documentation
+-           Source code for the basics and foundation of the game
+-           UML diagrams
+-           Documentation
  
