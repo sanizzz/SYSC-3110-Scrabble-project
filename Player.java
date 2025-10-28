@@ -87,9 +87,11 @@ public class Player {
         int i = 0;
         for (Tile t : hand) {
             sb.append(i).append(": ").append(t.toString()).append("\n");
+            i++;
         }
 
         return sb.toString();
     }
 }
+
 
