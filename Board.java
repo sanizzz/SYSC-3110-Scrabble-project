@@ -35,7 +35,7 @@ public class Board {
     public String render() {
         StringBuilder sb = new StringBuilder();
 
-        // --- 1. Header row (column labels 1–15) ---
+
         sb.append("    "); // 4 spaces to align under row letters
         for (int col = 1; col <= 15; col++) {
 
@@ -47,7 +47,7 @@ public class Board {
         }
         sb.append("\n");
 
-        // --- 2. Each board row (A–O) ---
+        // 2. Each board row (A–O)
         for (int row = 0; row < 15; row++) {
             char rowLabel = (char) ('A' + row); // Convert 0→A, 1→B, etc.
             sb.append(rowLabel).append(" | ");   // Row label + divider
