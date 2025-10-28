@@ -6,7 +6,7 @@ import java.util.List;
  * Represents the bag that players draw tiles from.
  */
 public class TileBag {
-    private List<Tile> tiles;
+    private final List<Tile> tiles;
 
     /**
      * Constructs a new TileBag object.
@@ -86,7 +86,10 @@ public class TileBag {
      * @return A tile object that has been removed from the bag.
      */
     public Tile dealTile() {
-        return tiles.removeFirst();
+        if (tiles.isEmpty()) {
+            throw new IllegalStateException("Cannot deal from an empty bag.");
+        }
+        return tiles.remove(tiles.size() - 1);
     }
 
     /**
@@ -96,6 +99,11 @@ public class TileBag {
      */
     public boolean isEmpty() {
         return tiles.isEmpty();
+    }
+
+    /** @return number of tiles left in the bag. */
+    public int size() {
+        return tiles.size();
     }
 
     /**

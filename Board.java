@@ -5,18 +5,6 @@
 
 
 public class Board {
-    public static void main(String[] args)
-    {
-        Board b = new Board();
-        System.out.println(b.inBounds(0, 0));    // true
-        System.out.println(b.inBounds(14, 14));  // true
-        System.out.println(b.inBounds(-1, 0));   // false
-        System.out.println(b.inBounds(15, 5));   // false
-
-
-    }
-
-
 
     public static final int SIZE = 15;// rows A-O and col 1-15
     private static final char EMPTY = '\0';// empty cell render as '.'
