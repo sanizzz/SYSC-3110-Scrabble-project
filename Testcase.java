@@ -1,63 +1,87 @@
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import static org.junit.jupiter.api.Assertions.*;
-//
-////Test all methods in board class-> Methods in board class invoke all methods in all classes
-//
-//class BoardTest {
-//    private Board board;
-//    @BeforeEach
-//    void setUp()
-//    {
-//        board = new Board();
-//    }
-//
-//    @Test
-//    void testInBounds()
-//    {
-//        assertTrue(board.inBounds(0, 0));
-//        assertFalse(board.inBounds(20, 20));
-//    }
-//
-//    @Test
-//    void testRender()
-//    {
-//        String output = board.render();
-//        assertTrue(output.contains("A |"));
-//        assertTrue(output.contains("1"));
-//        assertTrue(output.contains("."));
-//        assertEquals(16, output.split("\n").length);
-//    }
-//
-//    @Test
-//    void testCanPlace()
-//    {
-//        Placement word = new Placement(0, 0, Placement.Direction.ACROSS, "WORD");
-//        StringBuilder reason = new StringBuilder();
-//        assertTrue(board.canPlace(word, reason));
-//        assertEquals(0, reason.length());
-//
-//        Placement word1 = new Placement(14, 13, Placement.Direction.ACROSS, "LONG");
-//        StringBuilder reason1 = new StringBuilder();
-//        assertFalse(board.canPlace(word1, reason1));
-//        assertTrue(reason1.toString().contains("Out of bounds"));
-//
-//        Placement word2 = new Placement(0, 0, Placement.Direction.ACROSS, "WORD");
-//        board.place(word2);
-//        Placement word3 = new Placement(0, 0, Placement.Direction.ACROSS, "WARP");
-//        StringBuilder reason2 = new StringBuilder();
-//        assertFalse(board.canPlace(word3, reason2));
-//        assertTrue(reason2.toString().contains("Letter conflict"));
-//    }
-//
-//    @Test
-//    void testPlace()
-//    {
-//        Placement across = new Placement(1, 1, Placement.Direction.ACROSS, "HELLO");
-//        board.place(across);
-//        String rendered = board.render();
-//        assertTrue(rendered.contains("H"));
-//        assertTrue(rendered.contains("E"));
-//        assertTrue(rendered.contains("L"));
-//        assertTrue(rendered.contains("O"));
-//    }}
+/**
+ * Lightweight sanity checks for core board functionality.
+ * Run with `java Testcase` after compilation.
+ */
+public final class Testcase {
+    private int passed = 0;
+    private int total = 0;
+
+    public static void main(String[] args) {
+        Testcase tests = new Testcase();
+        tests.run();
+    }
+
+    private void run() {
+        testInBounds();
+        testRender();
+        testCanPlace();
+        testPlace();
+
+        System.out.printf("Passed %d/%d checks.%n", passed, total);
+        if (passed != total) {
+            System.exit(1);
+        }
+    }
+
+    private void testInBounds() {
+        total++;
+        Board board = new Board();
+        boolean ok = board.inBounds(0, 0) && board.inBounds(14, 14)
+                && !board.inBounds(-1, 0) && !board.inBounds(15, 5);
+        record(ok, "Board.inBounds edge cases");
+    }
+
+    private void testRender() {
+        total++;
+        Board board = new Board();
+        String output = board.render();
+        boolean ok = output.contains("A |")
+                && output.contains("15")
+                && output.contains(".")
+                && output.split("\n").length == 16;
+        record(ok, "Board.render initial state");
+    }
+
+    private void testCanPlace() {
+        total++;
+        Board board = new Board();
+        Placement okWord = new Placement(0, 0, Placement.Direction.ACROSS, "WORD");
+        StringBuilder reason = new StringBuilder();
+        boolean ok = board.canPlace(okWord, reason) && reason.length() == 0;
+
+        Placement outOfBounds = new Placement(14, 13, Placement.Direction.ACROSS, "LONG");
+        StringBuilder reason2 = new StringBuilder();
+        ok &= !board.canPlace(outOfBounds, reason2)
+                && reason2.toString().contains("bounds");
+
+        board.place(okWord);
+        Placement conflict = new Placement(0, 0, Placement.Direction.ACROSS, "WARP");
+        StringBuilder reason3 = new StringBuilder();
+        ok &= !board.canPlace(conflict, reason3)
+                && reason3.toString().contains("conflict");
+
+        record(ok, "Board.canPlace validations");
+    }
+
+    private void testPlace() {
+        total++;
+        Board board = new Board();
+        Placement across = new Placement(1, 1, Placement.Direction.ACROSS, "HELLO");
+        board.place(across);
+        String rendered = board.render();
+        boolean ok = rendered.contains("H")
+                && rendered.contains("E")
+                && rendered.contains("L")
+                && rendered.contains("O");
+        record(ok, "Board.place writes letters");
+    }
+
+    private void record(boolean condition, String description) {
+        if (condition) {
+            passed++;
+            System.out.println("[PASS] " + description);
+        } else {
+            System.out.println("[FAIL] " + description);
+        }
+    }
+}
