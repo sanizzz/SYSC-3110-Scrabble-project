@@ -14,8 +14,8 @@ public class Tile {
     }
 
     /** @return The letter on the tile. */
-    public Letter getLetter() {
-        return this.letter;
+    public String getLetter() {
+        return this.letter.toString();
     }
 
     /** @return The point value of the tile. */
@@ -25,6 +25,6 @@ public class Tile {
 
     @Override
     public String toString() {
-        return letter.toString() + getPoints();
+        return letter.toString() + ": " + getPoints();
     }
 }
