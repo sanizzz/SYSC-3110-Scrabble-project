@@ -17,57 +17,56 @@ public class TileBag {
     }
 
     /**
-     * Adds all the necessary tiles for a game of Scrabble and randomizing the
+     * Adds all the necessary tiles for a game of Scrabble and randomizes the
      * draw order.
      */
     public void initializeTileBag() {
-        tiles.add(new Tile(Letter.J));
-        tiles.add(new Tile(Letter.K));
-        tiles.add(new Tile(Letter.Q));
-        tiles.add(new Tile(Letter.X));
-        tiles.add(new Tile(Letter.Z));
+        addTile(new Tile(Letter.J));
+        addTile(new Tile(Letter.K));
+        addTile(new Tile(Letter.Q));
+        addTile(new Tile(Letter.X));
+        addTile(new Tile(Letter.Z));
 
         for (int i = 0; i < 2; i++) {
-            tiles.add(new Tile(Letter.B));
-            tiles.add(new Tile(Letter.C));
-            tiles.add(new Tile(Letter.F));
-            tiles.add(new Tile(Letter.H));
-            tiles.add(new Tile(Letter.M));
-            tiles.add(new Tile(Letter.P));
-            tiles.add(new Tile(Letter.V));
-            tiles.add(new Tile(Letter.W));
-            tiles.add(new Tile(Letter.Y));
-            tiles.add(new Tile(Letter.BLANK));
+            addTile(new Tile(Letter.B));
+            addTile(new Tile(Letter.C));
+            addTile(new Tile(Letter.F));
+            addTile(new Tile(Letter.H));
+            addTile(new Tile(Letter.M));
+            addTile(new Tile(Letter.P));
+            addTile(new Tile(Letter.V));
+            addTile(new Tile(Letter.W));
+            addTile(new Tile(Letter.Y));
         }
 
         for (int i = 0; i < 3; i++) {
-            tiles.add(new Tile(Letter.G));
+            addTile(new Tile(Letter.G));
         }
 
         for (int i = 0; i < 4; i++) {
-            tiles.add(new Tile(Letter.D));
-            tiles.add(new Tile(Letter.L));
-            tiles.add(new Tile(Letter.S));
-            tiles.add(new Tile(Letter.U));
+            addTile(new Tile(Letter.D));
+            addTile(new Tile(Letter.L));
+            addTile(new Tile(Letter.S));
+            addTile(new Tile(Letter.U));
         }
 
         for (int i = 0; i < 6; i++) {
-            tiles.add(new Tile(Letter.N));
-            tiles.add(new Tile(Letter.R));
-            tiles.add(new Tile(Letter.T));
+            addTile(new Tile(Letter.N));
+            addTile(new Tile(Letter.R));
+            addTile(new Tile(Letter.T));
         }
 
         for (int i = 0; i < 2; i++) {
-            tiles.add(new Tile(Letter.O));
+            addTile(new Tile(Letter.O));
         }
 
         for (int i = 0; i < 9; i++) {
-            tiles.add(new Tile(Letter.A));
-            tiles.add(new Tile(Letter.I));
+            addTile(new Tile(Letter.A));
+            addTile(new Tile(Letter.I));
         }
 
         for (int i = 0; i < 12; i++) {
-            tiles.add(new Tile(Letter.E));
+            addTile(new Tile(Letter.E));
         }
 
         shakeTileBag();
@@ -78,6 +77,15 @@ public class TileBag {
      */
     public void shakeTileBag() {
         Collections.shuffle(tiles);
+    }
+
+    /**
+     * Adds a tile to the tile bag.
+     *
+     * @param tile The tile to be added.
+     */
+    public void addTile(Tile tile) {
+        tiles.add(tile);
     }
 
     /**

@@ -30,11 +30,6 @@ public class Player {
         return score;
     }
 
-    /** @return The tiles in the player's hand. */
-    public List<Tile> getHand() {
-        return hand;
-    }
-
     /**
      * Adds a tile to the player's hand.
      *
@@ -45,27 +40,13 @@ public class Player {
     }
 
     /**
-     * Removes a tile from the player's hand.
+     * Removes a tile from the player's hand as indicated by its index.
+     * This occurs when the player plays or swaps a tile.
      *
-     * @param tile The tile to be removed.
+     * @param index The index of the tile to be removed.
      */
-    public void removeTile(Tile tile) {
-        hand.remove(tile);
-    }
-
-    /**
-     * Checks if the player's hand contains a specific letter.
-     *
-     * @param letter The letter to check for as a String.
-     * @return True if the player's hand contains the letter. False if otherwise.
-     */
-    public boolean hasTile(String letter) {
-        for (Tile t : hand) {
-            if (Letter.valueOf(letter) == t.getLetter()) {
-                return true;
-            }
-        }
-        return false;
+    public Tile removeTile(int index) {
+        return hand.remove(index);
     }
 
     /**
@@ -77,15 +58,34 @@ public class Player {
         score += points;
     }
 
+    /**
+     * Checks whether the player's hand is full or not.
+     *
+     * @param handSize The maximum size of a player's hand.
+     * @return True if the player's hand is full. False if otherwise.
+     */
+    public boolean isHandFull(int handSize) {
+        return (hand.size() == handSize);
+    }
+
+    /**
+     * Checks whether the player has played out (emptied) their hand.
+     *
+     * @return True if the player has no more tiles. False if otherwise.
+     */
+    public boolean hasPlayedOut() {
+        return hand.isEmpty();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("-----").append(name).append("-----\n");
-        sb.append("Hand: ");
+        sb.append("-----").append(name).append("'s Hand").append("-----\n");
 
+        int i = 0;
         for (Tile t : hand) {
-            sb.append(t.toString()).append(" ");
+            sb.append(i).append(": ").append(t.toString()).append("\n");
         }
 
         return sb.toString();
