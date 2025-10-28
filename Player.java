@@ -44,6 +44,7 @@ public class Player {
      * This occurs when the player plays or swaps a tile.
      *
      * @param index The index of the tile to be removed.
+     * @return The tile that has been removed.
      */
     public Tile removeTile(int index) {
         return hand.remove(index);
@@ -91,3 +92,4 @@ public class Player {
         return sb.toString();
     }
 }
+
