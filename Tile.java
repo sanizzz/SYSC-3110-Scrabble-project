@@ -2,7 +2,7 @@
  * Represents an individual letter tile.
  */
 public class Tile {
-    private Letter letter;
+    private final Letter letter;
 
     /**
      * Constructs a new Tile object
@@ -14,8 +14,8 @@ public class Tile {
     }
 
     /** @return The letter on the tile. */
-    public String getLetter() {
-        return this.letter.toString();
+    public Letter getLetter() {
+        return this.letter;
     }
 
     /** @return The point value of the tile. */

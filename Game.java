@@ -255,6 +255,7 @@ public class Game {
         StringBuilder sb = new StringBuilder();
         for (Tile tile : rack) {
             sb.append(tile.getLetter().name());
+
             sb.append("(").append(tile.getPoints()).append(") ");
         }
         return sb.toString().trim();

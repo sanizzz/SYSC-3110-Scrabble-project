@@ -8,125 +8,93 @@ import java.util.List;
 public class TileBag {
     private final List<Tile> tiles;
 
-    /**
-     * Constructs a new TileBag object.
-     */
     public TileBag() {
         this.tiles = new ArrayList<>();
         initializeTileBag();
     }
 
     /**
-     * Adds all the necessary tiles for a game of Scrabble and randomizes the
-     * draw order.
+     * Adds the full Scrabble tile set and shuffles the draw order.
      */
-    public void initializeTileBag() {
-<<<<<<< HEAD
+    private void initializeTileBag() {
+        tiles.clear();
+
         tiles.add(new Tile(Letter.J));
         tiles.add(new Tile(Letter.K));
         tiles.add(new Tile(Letter.Q));
         tiles.add(new Tile(Letter.X));
         tiles.add(new Tile(Letter.Z));
-=======
-        addTile(new Tile(Letter.J));
-        addTile(new Tile(Letter.K));
-        addTile(new Tile(Letter.Q));
-        addTile(new Tile(Letter.X));
-        addTile(new Tile(Letter.Z));
->>>>>>> 47a75b0d58002970b515e4647f771d4fcf9d7cca
 
         for (int i = 0; i < 2; i++) {
-            addTile(new Tile(Letter.B));
-            addTile(new Tile(Letter.C));
-            addTile(new Tile(Letter.F));
-            addTile(new Tile(Letter.H));
-            addTile(new Tile(Letter.M));
-            addTile(new Tile(Letter.P));
-            addTile(new Tile(Letter.V));
-            addTile(new Tile(Letter.W));
-            addTile(new Tile(Letter.Y));
+            tiles.add(new Tile(Letter.B));
+            tiles.add(new Tile(Letter.C));
+            tiles.add(new Tile(Letter.F));
+            tiles.add(new Tile(Letter.H));
+            tiles.add(new Tile(Letter.M));
+            tiles.add(new Tile(Letter.P));
+            tiles.add(new Tile(Letter.V));
+            tiles.add(new Tile(Letter.W));
+            tiles.add(new Tile(Letter.Y));
+            tiles.add(new Tile(Letter.BLANK));
         }
 
         for (int i = 0; i < 3; i++) {
-            addTile(new Tile(Letter.G));
+            tiles.add(new Tile(Letter.G));
         }
 
         for (int i = 0; i < 4; i++) {
-            addTile(new Tile(Letter.D));
-            addTile(new Tile(Letter.L));
-            addTile(new Tile(Letter.S));
-            addTile(new Tile(Letter.U));
+            tiles.add(new Tile(Letter.D));
+            tiles.add(new Tile(Letter.L));
+            tiles.add(new Tile(Letter.S));
+            tiles.add(new Tile(Letter.U));
         }
 
         for (int i = 0; i < 6; i++) {
-            addTile(new Tile(Letter.N));
-            addTile(new Tile(Letter.R));
-            addTile(new Tile(Letter.T));
+            tiles.add(new Tile(Letter.N));
+            tiles.add(new Tile(Letter.R));
+            tiles.add(new Tile(Letter.T));
         }
 
-        for (int i = 0; i < 2; i++) {
-            addTile(new Tile(Letter.O));
+        for (int i = 0; i < 8; i++) {
+            tiles.add(new Tile(Letter.O));
         }
 
         for (int i = 0; i < 9; i++) {
-            addTile(new Tile(Letter.A));
-            addTile(new Tile(Letter.I));
+            tiles.add(new Tile(Letter.A));
+            tiles.add(new Tile(Letter.I));
         }
 
         for (int i = 0; i < 12; i++) {
-            addTile(new Tile(Letter.E));
+            tiles.add(new Tile(Letter.E));
         }
 
-        shakeTileBag();
+        shuffle();
     }
 
-    /**
-     * Randomizes the order tiles are drawn from the bag.
-     */
-    public void shakeTileBag() {
+    /** Randomizes the tile order. */
+    public void shuffle() {
         Collections.shuffle(tiles);
     }
 
     /**
-     * Adds a tile to the tile bag.
+     * Removes and returns one tile from the bag.
      *
-     * @param tile The tile to be added.
-     */
-    public void addTile(Tile tile) {
-        tiles.add(tile);
-    }
-
-    /**
-     * Removes and returns a tile from the bag.
-     *
-     * @return A tile object that has been removed from the bag.
+     * @return The drawn tile.
      */
     public Tile dealTile() {
         if (tiles.isEmpty()) {
-            throw new IllegalStateException("Cannot deal from an empty bag.");
+            throw new IllegalStateException("Cannot deal from an empty tile bag.");
         }
         return tiles.remove(tiles.size() - 1);
     }
 
-    /**
-     * Checks whether the bag is empty or not.
-     *
-     * @return True if the bag is empty. False if otherwise.
-     */
+    /** @return true when no tiles remain. */
     public boolean isEmpty() {
         return tiles.isEmpty();
     }
 
-    /** @return number of tiles left in the bag. */
+    /** @return number of tiles left. */
     public int size() {
         return tiles.size();
-    }
-
-    /**
-     * Prepares the bag for a new game of scrabble.
-     */
-    public void resetTileBag() {
-        tiles.clear();
-        initializeTileBag();
     }
 }
