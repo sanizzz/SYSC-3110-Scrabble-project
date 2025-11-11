@@ -23,7 +23,7 @@ java Game
 ```
 
 When prompted, enter 2-4 player names (blank names default to `PlayerN`). Each turn, the current player sees the board, scores, rack, and remaining tiles, then enters:
-- `<WORD><Row><Column><Direction>` to place a word (e.g. HELLO H 8).
+- `<WORD><Row><Column><Direction>` to place a word (e.g. HELLO 7 8 A).
 - `Place word` to place a word. 
 - `QUIT` to end the session early.
 
