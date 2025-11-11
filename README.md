@@ -1,7 +1,7 @@
-# Scrabble Milestone 1
+# Scrabble Milestone 2
 
 ## Overview
-Interactive console Scrabble prototype. Supports 2-4 players placing words on a 15x15 board, drawing from a shared tile bag, and scoring with standard Scrabble bonuses.
+Interactive GUI scrabble prototype. Supports 2-4 players placing words on a 15x15 board, drawing from a shared tile bag, and scoring with standard Scrabble bonuses.
 
 ## Components
 - `Board.java` - Manages the board grid, validates placements, and renders ASCII output.
@@ -11,6 +11,10 @@ Interactive console Scrabble prototype. Supports 2-4 players placing words on a 
 - `Placement.java` - Immutable value object describing a word placement.
 - `Dictionary.java` - Loads legal words from `words.txt` for move validation.
 - `words.txt` - Plain word list consumed by the dictionary loader.
+- `Scrabble_Model.java` - All subclasses required to run the game such as board, player, tile.
+- `Scrabble_View.java` - Interactive interface that reacts to changes and updates after every player turn.
+- `Scrabble_Controller.java` - Logic that runs the game using action listeners and verifies right placement using classes from Scrabble_Model.java.
+- `Scrabble_Frame.java` - Create the GUI interface with the grid and uses Jframe.
 
 ## Running the Game
 ```
@@ -19,8 +23,8 @@ java Game
 ```
 
 When prompted, enter 2-4 player names (blank names default to `PlayerN`). Each turn, the current player sees the board, scores, rack, and remaining tiles, then enters:
-- `<Row><Column> <WORD> <Direction>` to place a word (e.g. `H8 HELLO A` or `H8 HELLO D`).
-- `PASS` to skip a turn.
+- `<WORD><Row><Column><Direction>` to place a word (e.g. HELLO H 8).
+- `Place word` to place a word. 
 - `QUIT` to end the session early.
 
 The game ends automatically when the bag is exhausted and a player empties their rack, or when everyone passes twice in a row.
