@@ -1,4 +1,7 @@
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import java.io.IOException;
+import java.nio.file.Paths;
 /**
  * The Scrabble_Frame class contains the entry point for the Scrabble game application.
  * It is responsible for initializing the Model-View-Controller (MVC) components
@@ -27,20 +30,17 @@ public class Scrabble_Frame {
      */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Scrabble_View view = new Scrabble_View();
-            Scrabble_Model model = new Scrabble_Model();
-
-            // Set up correct number of players based on user input before starting controller.
-            model.players.clear();
-            int numPlayers = view.getNumPlayers();
-            for (int i = 1; i <= numPlayers; ++i) {
-                model.players.add(new Scrabble_Model.Player("Player" + i));
-            }
-            for (Scrabble_Model.Player p : model.players) {
-                while (p.handSize() < 7 && !model.tileBag.isEmpty())
-                    p.addTile(model.tileBag.dealTile());
+            BoardConfigLoader.BoardLibrary library;
+            try {
+                library = BoardConfigLoader.loadLibrary(Paths.get("boards"));
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Failed to load board layouts: " + ex.getMessage());
+                return;
             }
 
+            Scrabble_View view = new Scrabble_View(library.getBoardNames());
+            Scrabble_Model model = new Scrabble_Model(library.require(view.getSelectedBoardName()));
+            model.setupPlayers(view.getNumPlayers());
             new Scrabble_Controller(model, view);
         });
     }

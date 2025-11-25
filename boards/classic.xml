@@ -1,0 +1,66 @@
+﻿<board name="Classic" size="15">
+  <premium type="TW" row="0" col="0"/>
+  <premium type="TW" row="0" col="7"/>
+  <premium type="TW" row="0" col="14"/>
+  <premium type="TW" row="7" col="0"/>
+  <premium type="TW" row="7" col="14"/>
+  <premium type="TW" row="14" col="0"/>
+  <premium type="TW" row="14" col="7"/>
+  <premium type="TW" row="14" col="14"/>
+
+  <premium type="DW" row="1" col="1"/>
+  <premium type="DW" row="2" col="2"/>
+  <premium type="DW" row="3" col="3"/>
+  <premium type="DW" row="4" col="4"/>
+  <premium type="DW" row="1" col="13"/>
+  <premium type="DW" row="2" col="12"/>
+  <premium type="DW" row="3" col="11"/>
+  <premium type="DW" row="4" col="10"/>
+  <premium type="DW" row="10" col="4"/>
+  <premium type="DW" row="11" col="3"/>
+  <premium type="DW" row="12" col="2"/>
+  <premium type="DW" row="13" col="1"/>
+  <premium type="DW" row="10" col="10"/>
+  <premium type="DW" row="11" col="11"/>
+  <premium type="DW" row="12" col="12"/>
+  <premium type="DW" row="13" col="13"/>
+  <premium type="DW" row="7" col="7"/>
+
+  <premium type="TL" row="1" col="5"/>
+  <premium type="TL" row="1" col="9"/>
+  <premium type="TL" row="5" col="1"/>
+  <premium type="TL" row="5" col="5"/>
+  <premium type="TL" row="5" col="9"/>
+  <premium type="TL" row="5" col="13"/>
+  <premium type="TL" row="9" col="1"/>
+  <premium type="TL" row="9" col="5"/>
+  <premium type="TL" row="9" col="9"/>
+  <premium type="TL" row="9" col="13"/>
+  <premium type="TL" row="13" col="5"/>
+  <premium type="TL" row="13" col="9"/>
+
+  <premium type="DL" row="0" col="3"/>
+  <premium type="DL" row="0" col="11"/>
+  <premium type="DL" row="2" col="6"/>
+  <premium type="DL" row="2" col="8"/>
+  <premium type="DL" row="3" col="0"/>
+  <premium type="DL" row="3" col="7"/>
+  <premium type="DL" row="3" col="14"/>
+  <premium type="DL" row="6" col="2"/>
+  <premium type="DL" row="6" col="6"/>
+  <premium type="DL" row="6" col="8"/>
+  <premium type="DL" row="6" col="12"/>
+  <premium type="DL" row="7" col="3"/>
+  <premium type="DL" row="7" col="11"/>
+  <premium type="DL" row="8" col="2"/>
+  <premium type="DL" row="8" col="6"/>
+  <premium type="DL" row="8" col="8"/>
+  <premium type="DL" row="8" col="12"/>
+  <premium type="DL" row="11" col="0"/>
+  <premium type="DL" row="11" col="7"/>
+  <premium type="DL" row="11" col="14"/>
+  <premium type="DL" row="12" col="6"/>
+  <premium type="DL" row="12" col="8"/>
+  <premium type="DL" row="14" col="3"/>
+  <premium type="DL" row="14" col="11"/>
+</board>

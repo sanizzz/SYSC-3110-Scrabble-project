@@ -8,17 +8,26 @@ public class Scrabble_View extends JFrame {
     private JPanel playerTilesPanel;
     private JPanel controlPanel;
     private JButton placeWordButton;
+    private JButton undoButton;
+    private JButton redoButton;
+    private JButton saveButton;
+    private JButton loadButton;
     private JLabel currentPlayerLabel;
+    private JLabel boardNameLabel;
     private JTextField wordField, rowField, colField, directionField;
+    private final List<String> boardOptions;
 
     private int numPlayers = 2;
+    private String selectedBoard;
 
-    public Scrabble_View() {
+    public Scrabble_View(List<String> boardOptions) {
+        this.boardOptions = boardOptions;
         setTitle("Scrabble Game");
         setSize(1000, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         promptPlayerCount();
+        promptBoardSelection();
         setupUI();
         setVisible(true);
     }
@@ -39,6 +48,25 @@ public class Scrabble_View extends JFrame {
     }
     public int getNumPlayers() { return numPlayers; }
 
+    private void promptBoardSelection() {
+        Object choice = JOptionPane.showInputDialog(
+                this,
+                "Select a board layout:",
+                "Board Layout",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                boardOptions.toArray(),
+                boardOptions.get(0));
+        if (choice == null) {
+            System.exit(0);
+        }
+        selectedBoard = choice.toString();
+    }
+
+    public String getSelectedBoardName() {
+        return selectedBoard;
+    }
+
     private void setupUI() {
         boardPanel = new JPanel(new GridLayout(15,15));
         boardPanel.setBorder(BorderFactory.createTitledBorder("Scrabble Board"));
@@ -50,7 +78,12 @@ public class Scrabble_View extends JFrame {
 
         controlPanel = new JPanel(new GridLayout(0,1));
         placeWordButton = new JButton("Place Word");
+        undoButton = new JButton("Undo");
+        redoButton = new JButton("Redo");
+        saveButton = new JButton("Save");
+        loadButton = new JButton("Load");
         currentPlayerLabel = new JLabel("Current Player: 1");
+        boardNameLabel = new JLabel("Board: " + selectedBoard);
 
         wordField = new JTextField(10);
         rowField = new JTextField(2);
@@ -67,7 +100,12 @@ public class Scrabble_View extends JFrame {
         controlPanel.add(directionField);
 
         controlPanel.add(placeWordButton);
+        controlPanel.add(undoButton);
+        controlPanel.add(redoButton);
+        controlPanel.add(saveButton);
+        controlPanel.add(loadButton);
         controlPanel.add(currentPlayerLabel);
+        controlPanel.add(boardNameLabel);
         add(controlPanel, BorderLayout.EAST);
     }
 
@@ -106,6 +144,18 @@ public class Scrabble_View extends JFrame {
     public void addPlaceWordListener(ActionListener listener) {
         placeWordButton.addActionListener(listener);
     }
+    public void addUndoListener(ActionListener listener) { undoButton.addActionListener(listener); }
+    public void addRedoListener(ActionListener listener) { redoButton.addActionListener(listener); }
+    public void addSaveListener(ActionListener listener) { saveButton.addActionListener(listener); }
+    public void addLoadListener(ActionListener listener) { loadButton.addActionListener(listener); }
+
+    public void setUndoEnabled(boolean enabled) { undoButton.setEnabled(enabled); }
+    public void setRedoEnabled(boolean enabled) { redoButton.setEnabled(enabled); }
+
+    public void updateBoardName(String name) {
+        boardNameLabel.setText("Board: " + name);
+    }
+
     public String getWordInput() { return wordField.getText().trim(); }
     public int getRowInput() { try { return Integer.parseInt(rowField.getText()); } catch(Exception ex) { return 0; } }
     public int getColInput() { try { return Integer.parseInt(colField.getText()); } catch(Exception ex) { return 0; } }
