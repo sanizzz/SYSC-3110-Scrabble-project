@@ -1,4 +1,4 @@
-﻿public enum PremiumSquare {
+public enum PremiumSquare {
     NORMAL(1, 1),
     DOUBLE_LETTER(2, 1),
     TRIPLE_LETTER(3, 1),
@@ -43,3 +43,4 @@
         }
     }
 }
+
